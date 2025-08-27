@@ -265,10 +265,10 @@ const Auth = () => {
               }}
               className="text-primary hover:bg-primary/10"
             >
-              {isLogin 
+              {/* {isLogin 
                 ? 'Não tem conta? Cadastre-se' 
                 : 'Já tem conta? Faça login'
-              }
+              } */}
             </Button>
           </div>
         </Card>
