@@ -1,0 +1,233 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Gym Management Design System - Modern, Bold, and Energetic */
+
+@layer base {
+  :root {
+    /* Core Background Colors */
+    --background: 0 0% 8%;          /* Deep black background */
+    --foreground: 0 0% 95%;         /* Near white text */
+    --surface: 0 0% 12%;            /* Dark surface for cards */
+    --surface-hover: 0 0% 16%;      /* Hover state for surfaces */
+
+    /* Brand Colors - Gym Energy Theme */
+    --primary: 0 85% 60%;           /* Vibrant red - energy & strength */
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 0 85% 55%;     /* Slightly darker red on hover */
+
+    /* Secondary & Support Colors */
+    --secondary: 0 0% 18%;          /* Dark gray for secondary elements */
+    --secondary-foreground: 0 0% 90%;
+    --accent: 0 85% 60%;            /* Same as primary for consistency */
+    --accent-foreground: 0 0% 100%;
+
+    /* Neutral Grays */
+    --muted: 0 0% 15%;              /* Muted backgrounds */
+    --muted-foreground: 0 0% 65%;   /* Muted text */
+    --border: 0 0% 20%;             /* Subtle borders */
+    --input: 0 0% 16%;              /* Input backgrounds */
+    --ring: 0 85% 60%;              /* Focus rings */
+
+    /* Status Colors */
+    --success: 120 100% 35%;        /* Green for completed */
+    --success-foreground: 0 0% 100%;
+    --warning: 45 100% 55%;         /* Orange for warnings */
+    --warning-foreground: 0 0% 100%;
+    --destructive: 0 85% 60%;       /* Red for errors */
+    --destructive-foreground: 0 0% 100%;
+
+    /* Card System */
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 95%;
+
+    /* Interactive Elements */
+    --radius: 0.75rem;              /* Slightly rounded corners */
+
+    /* Sidebar (Admin Panel) */
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 0 85% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 0 0% 18%;
+    --sidebar-ring: 0 85% 60%;
+  }
+
+  /* Light mode (if ever needed) */
+  .light {
+    --background: 0 0% 98%;
+    --foreground: 0 0% 10%;
+    --surface: 0 0% 100%;
+    --surface-hover: 0 0% 96%;
+    
+    --primary: 0 85% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 0 85% 50%;
+    
+    --secondary: 0 0% 92%;
+    --secondary-foreground: 0 0% 15%;
+    --accent: 0 85% 55%;
+    --accent-foreground: 0 0% 100%;
+    
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 45%;
+    --border: 0 0% 88%;
+    --input: 0 0% 100%;
+    --ring: 0 85% 55%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Custom Gym-themed Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/60 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/80;
+  }
+}
+
+/* Custom Animations for Gym App */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Utility Classes for Gym App */
+@layer components {
+  .animate-fade-in-up {
+    animation: fadeInUp 0.3s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out;
+  }
+
+  .animate-pulse-subtle {
+    animation: pulse-subtle 2s ease-in-out infinite;
+  }
+
+  /* Gym Card Styles */
+  .gym-card {
+    @apply bg-card border border-border rounded-lg p-6 hover:bg-surface-hover transition-all duration-200 animate-scale-in;
+  }
+
+  .gym-card-compact {
+    @apply bg-card border border-border rounded-lg p-4 hover:bg-surface-hover transition-all duration-200;
+  }
+
+  /* Exercise Card */
+  .exercise-card {
+    @apply bg-surface border border-border/50 rounded-lg p-4 hover:border-primary/30 transition-all duration-200;
+  }
+
+  /* Button Variants */
+  .btn-gym-primary {
+    @apply bg-primary hover:bg-primary-hover text-primary-foreground font-semibold px-6 py-3 rounded-lg transition-all duration-200 active:scale-95;
+  }
+
+  .btn-gym-secondary {
+    @apply bg-secondary hover:bg-secondary/80 text-secondary-foreground font-medium px-4 py-2 rounded-lg transition-all duration-200;
+  }
+
+  /* Status Indicators */
+  .status-completed {
+    @apply bg-success/20 text-success border border-success/30 px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .status-pending {
+    @apply bg-muted text-muted-foreground border border-border px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  /* Custom Surface Colors */
+  .bg-surface {
+    background-color: hsl(var(--surface));
+  }
+
+  .bg-surface-hover {
+    background-color: hsl(var(--surface-hover));
+  }
+
+  .hover\:bg-surface-hover:hover {
+    background-color: hsl(var(--surface-hover));
+  }
+}
+
+/* Typography Scale for Gym App */
+.text-display {
+  @apply text-4xl font-bold tracking-tight;
+}
+
+.text-heading {
+  @apply text-2xl font-bold;
+}
+
+.text-subheading {
+  @apply text-xl font-semibold;
+}
+
+.text-body {
+  @apply text-base;
+}
+
+.text-caption {
+  @apply text-sm text-muted-foreground;
+}
+
+.text-micro {
+  @apply text-xs text-muted-foreground;
+}
